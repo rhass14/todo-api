@@ -19,7 +19,7 @@ prepFilter.forEach((prepFilter) => {
 });
 
 function getSelectedFilter() {
-  let selectedFilter = "null";
+  let selectedFilter = "all";
 
   prepFilter.forEach((input) => {
     if (input.checked) {
@@ -71,6 +71,10 @@ async function addTask() {
   const prepDescription = document.getElementById("description");
   const newTask = { description: prepDescription.value, done: false };
 
+  if (prepDescription.value.length === 0) {
+    return;
+  }
+
   const addTaskRequest = await fetch(url, {
     method: "POST",
     headers: { "Content-type": "application/json" },
@@ -116,5 +120,3 @@ async function deleteDoneTasks() {
   }
   renderTasks();
 }
-
-//update css/design
